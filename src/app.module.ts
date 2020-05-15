@@ -4,6 +4,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import path = require('path');
 import { UserModule } from './modules/user/user.module';
+import { SchollModule } from './modules/scholl/scholl.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { UserModule } from './modules/user/user.module';
     }),
     AuthModule,
     UserModule,
+    SchollModule,
   ],
   controllers: [],
 })
