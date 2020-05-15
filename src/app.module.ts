@@ -5,6 +5,14 @@ import { AuthModule } from './auth/auth.module';
 import path = require('path');
 import { UserModule } from './modules/user/user.module';
 import { SchollModule } from './modules/scholl/scholl.module';
+import { ClassRoomModule } from './modules/class-room/class-room.module';
+import { TeacherModule } from './modules/teacher/teacher.module';
+import { StudentModule } from './modules/student/student.module';
+import { SubjectModule } from './modules/subject/subject.module';
+import { NotebookModule } from './modules/notebook/notebook.module';
+import { EvaluationModule } from './modules/evaluation/evaluation.module';
+import { PresenceModule } from './modules/presence/presence.module';
+import { IndexModule } from './modules/index/index.module';
 
 @Module({
   imports: [
@@ -28,6 +36,14 @@ import { SchollModule } from './modules/scholl/scholl.module';
     AuthModule,
     UserModule,
     SchollModule,
+    ClassRoomModule,
+    TeacherModule,
+    StudentModule,
+    SubjectModule,
+    NotebookModule,
+    EvaluationModule,
+    PresenceModule,
+    IndexModule,
   ],
   controllers: [],
 })
