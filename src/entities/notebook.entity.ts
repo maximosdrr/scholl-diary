@@ -4,10 +4,12 @@ import {
   Column,
   OneToOne,
   JoinColumn,
-  ManyToOne,
+  OneToMany,
 } from 'typeorm';
 import { Subject } from './subject.entity';
-import { Teacher } from './teacher.entity';
+import { Evaluation } from './evaluation.entity';
+import { type } from 'os';
+import { Presence } from './presence.entity';
 
 @Entity()
 export class Notebook {
@@ -21,10 +23,15 @@ export class Notebook {
   @JoinColumn()
   subject: Subject;
 
-  @ManyToOne(
-    type => Teacher,
-    teacher => teacher.notebook,
-    { nullable: false },
+  @OneToMany(
+    type => Evaluation,
+    evaluation => evaluation.notebook,
   )
-  teacher: Teacher;
+  evaluation: Evaluation;
+
+  @OneToMany(
+    type => Presence,
+    presence => presence.notebook,
+  )
+  presence: Presence;
 }

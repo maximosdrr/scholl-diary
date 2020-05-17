@@ -1,6 +1,13 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
-import { Scholl } from './scholl.entity';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  OneToMany,
+} from 'typeorm';
 import { ClassRoom } from './class-room.entity';
+import { Evaluation } from './evaluation.entity';
+import { Presence } from './presence.entity';
 
 @Entity()
 export class Student {
@@ -16,4 +23,16 @@ export class Student {
     { nullable: false },
   )
   classRoom: ClassRoom;
+
+  @OneToMany(
+    type => Evaluation,
+    evaluation => evaluation.student,
+  )
+  evaluation: Evaluation;
+
+  @OneToMany(
+    type => Presence,
+    presence => presence.student,
+  )
+  presence: Presence;
 }

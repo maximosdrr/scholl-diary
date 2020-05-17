@@ -22,8 +22,17 @@ export class TeacherService {
   }
 
   async findOne(id: string): Promise<Teacher> {
-    return await this.teacherRepository.findOne(id).catch(erro => {
-      throw new HttpException(erro, HttpStatus.BAD_REQUEST);
-    });
+    return await this.teacherRepository
+      .findOne(id, {
+        join: {
+          alias: 't',
+          leftJoinAndSelect: {
+            subjects: 't.subject',
+          },
+        },
+      })
+      .catch(erro => {
+        throw new HttpException(erro, HttpStatus.BAD_REQUEST);
+      });
   }
 }

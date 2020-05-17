@@ -32,12 +32,6 @@ export class ClassRoom {
   student: Student;
 
   @OneToMany(
-    type => Teacher,
-    teacher => teacher.classRoom,
-  )
-  teacher: Teacher;
-
-  @OneToMany(
     type => Subject,
     subject => subject.classRoom,
   )

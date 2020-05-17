@@ -22,8 +22,18 @@ export class StudentService {
   }
 
   async findOne(id: string): Promise<Student> {
-    return await this.studentService.findOne(id, {}).catch(erro => {
-      throw new HttpException(erro, HttpStatus.BAD_REQUEST);
-    });
+    return await this.studentService
+      .findOne(id, {
+        join: {
+          alias: 'st',
+          leftJoinAndSelect: {
+            presence: 'st.presence',
+            evaluation: 'st.evaluation',
+          },
+        },
+      })
+      .catch(erro => {
+        throw new HttpException(erro, HttpStatus.BAD_REQUEST);
+      });
   }
 }

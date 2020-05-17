@@ -22,8 +22,17 @@ export class SubjectService {
   }
 
   async findOne(id: string): Promise<Subject> {
-    return await this.subjectRepository.findOne(id).catch(erro => {
-      throw new HttpException(erro, HttpStatus.BAD_REQUEST);
-    });
+    return await this.subjectRepository
+      .findOne(id, {
+        join: {
+          alias: 'subj',
+          leftJoinAndSelect: {
+            teacher: 'subj.teacher',
+          },
+        },
+      })
+      .catch(erro => {
+        throw new HttpException(erro, HttpStatus.BAD_REQUEST);
+      });
   }
 }

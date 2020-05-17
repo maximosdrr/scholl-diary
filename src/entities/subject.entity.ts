@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, ManyToOne, Column } from 'typeorm';
 import { ClassRoom } from './class-room.entity';
+import { Teacher } from './teacher.entity';
 
 @Entity()
 export class Subject {
@@ -15,4 +16,11 @@ export class Subject {
     { nullable: false },
   )
   classRoom: ClassRoom;
+
+  @ManyToOne(
+    type => Teacher,
+    teacher => teacher.subject,
+    { nullable: false },
+  )
+  teacher: Teacher;
 }

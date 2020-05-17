@@ -29,7 +29,6 @@ export class ClassRoomService {
           alias: 'classroom',
           leftJoinAndSelect: {
             students: 'classroom.student',
-            teachers: 'classroom.teacher',
             subjects: 'classroom.subject',
           },
         },
@@ -47,7 +46,6 @@ export class ClassRoomService {
           alias: 'classroom',
           leftJoinAndSelect: {
             students: 'classroom.student',
-            teachers: 'classroom.teacher',
             subjects: 'classroom.subject',
           },
         },

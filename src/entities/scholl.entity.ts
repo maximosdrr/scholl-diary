@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { ClassRoom } from './class-room.entity';
+import { Index } from './index.entity';
 
 @Entity()
 export class Scholl {
@@ -14,4 +15,10 @@ export class Scholl {
     classRoom => classRoom.scholl,
   )
   classRoom: ClassRoom;
+
+  @OneToMany(
+    type => Index,
+    index => index.scholl,
+  )
+  index: Index;
 }
