@@ -1,5 +1,13 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
-import { Scholl } from './scholl.entity';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  OneToMany,
+} from 'typeorm';
+import { ClassRoom } from './class-room.entity';
+import { Subject } from './subject.entity';
+import { Notebook } from './notebook.entity';
 
 @Entity()
 export class Teacher {
@@ -10,8 +18,15 @@ export class Teacher {
   name: string;
 
   @ManyToOne(
-    type => Scholl,
-    scholl => scholl.teacher,
+    type => ClassRoom,
+    classRoom => classRoom.teacher,
+    { nullable: false },
   )
-  scholl: Scholl;
+  classRoom: ClassRoom;
+
+  @OneToMany(
+    type => Notebook,
+    notebook => notebook.teacher,
+  )
+  notebook: Notebook;
 }

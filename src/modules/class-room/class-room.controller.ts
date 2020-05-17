@@ -1,4 +1,12 @@
-import { Controller, Post, Body, Delete, Param, Get } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  Delete,
+  Param,
+  Get,
+  Query,
+} from '@nestjs/common';
 import { ClassRoomService } from './class-room.service';
 import { ClassRoom } from 'src/entities/class-room.entity';
 
@@ -19,5 +27,13 @@ export class ClassRoomController {
   @Get('find/:scholl')
   async find(@Param('scholl') scholl: string) {
     return await this.classRoomService.find(scholl);
+  }
+
+  @Get('find')
+  async findOne(
+    @Query('scholl') scholl: string,
+    @Query('class-room') classRoom: string,
+  ) {
+    return await this.classRoomService.findOne(scholl, classRoom);
   }
 }

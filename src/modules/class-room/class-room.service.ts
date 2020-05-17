@@ -23,7 +23,35 @@ export class ClassRoomService {
 
   async find(scholl: string): Promise<ClassRoom[]> {
     return await this.classRoom
-      .find({ where: { scholl: scholl } })
+      .find({
+        where: { scholl: scholl },
+        join: {
+          alias: 'classroom',
+          leftJoinAndSelect: {
+            students: 'classroom.student',
+            teachers: 'classroom.teacher',
+            subjects: 'classroom.subject',
+          },
+        },
+      })
+      .catch(erro => {
+        throw new HttpException(erro, HttpStatus.BAD_REQUEST);
+      });
+  }
+
+  async findOne(scholl: string, classRoom: string): Promise<ClassRoom> {
+    return await this.classRoom
+      .findOne(classRoom, {
+        where: { scholl: scholl },
+        join: {
+          alias: 'classroom',
+          leftJoinAndSelect: {
+            students: 'classroom.student',
+            teachers: 'classroom.teacher',
+            subjects: 'classroom.subject',
+          },
+        },
+      })
       .catch(erro => {
         throw new HttpException(erro, HttpStatus.BAD_REQUEST);
       });

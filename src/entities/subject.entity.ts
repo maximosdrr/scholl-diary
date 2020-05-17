@@ -1,17 +1,18 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, ManyToOne, Column } from 'typeorm';
 import { ClassRoom } from './class-room.entity';
 
 @Entity()
-export class Scholl {
+export class Subject {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
   name: string;
 
-  @OneToMany(
+  @ManyToOne(
     type => ClassRoom,
-    classRoom => classRoom.scholl,
+    classRoom => classRoom.subject,
+    { nullable: false },
   )
   classRoom: ClassRoom;
 }

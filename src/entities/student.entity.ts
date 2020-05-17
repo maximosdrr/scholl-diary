@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
 import { Scholl } from './scholl.entity';
+import { ClassRoom } from './class-room.entity';
 
 @Entity()
 export class Student {
@@ -10,8 +11,9 @@ export class Student {
   name: string;
 
   @ManyToOne(
-    type => Scholl,
-    scholl => scholl.student,
+    type => ClassRoom,
+    classRoom => classRoom.student,
+    { nullable: false },
   )
-  scholl: Scholl;
+  classRoom: ClassRoom;
 }
